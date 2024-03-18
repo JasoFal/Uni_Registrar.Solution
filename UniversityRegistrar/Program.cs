@@ -7,9 +7,9 @@ namespace ProjectName
 {
   class Program
   {
-    static void Main(string[] arg)
+    static void Main(string[] args)
     {
-      WebApplicationBuilder builder = WebApplication.CreateBuilder(arg);
+      WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
       builder.Services.AddControllersWithViews();
       builder.Services.AddDbContext<ProjectNameContext>(
         dbContextOptions => dbContextOptions
