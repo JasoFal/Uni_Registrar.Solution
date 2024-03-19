@@ -8,6 +8,6 @@ namespace UniversityRegistrar.Models
     public DbSet<Course> Courses { get; set; }
     public DbSet<StudentCourse> StudentCourses { get; set; }
 
-    public UniversityRegistrarContext{DbContextOptions options} : base(options) { }
+    public UniversityRegistrarContext(DbContextOptions options) : base(options) { }
   }
 }
