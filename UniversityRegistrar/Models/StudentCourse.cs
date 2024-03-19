@@ -1,6 +1,6 @@
 namespace UniversityRegistrar.Models
 {
-  public class
+  public class StudentCourse
   {
     public int StudentCourseId { get; set; }
     public int StudentId { get; set; }
