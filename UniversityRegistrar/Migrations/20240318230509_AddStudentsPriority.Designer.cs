@@ -44,7 +44,7 @@ namespace UniversityRegistrar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DOI")
+                    b.Property<DateTime>("DOE")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
