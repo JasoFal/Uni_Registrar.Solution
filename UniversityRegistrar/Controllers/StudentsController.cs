@@ -23,7 +23,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Create()
     {
-      return View()
+      return View();
     }
 
     [HttpPost]
