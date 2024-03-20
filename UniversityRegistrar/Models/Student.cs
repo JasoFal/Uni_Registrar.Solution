@@ -7,7 +7,7 @@ namespace UniversityRegistrar.Models
   {
     public int StudentId { get; set; }
     public string Name { get; set; }
-    public DateTime DOI { get; set; }
+    public DateTime DOE { get; set; }
     public List<StudentCourse> JoinEntities { get; }
   }
 }
