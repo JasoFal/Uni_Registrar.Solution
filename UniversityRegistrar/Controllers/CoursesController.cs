@@ -29,5 +29,20 @@ namespace UniversityRegistrar.Controllers
         .FirstOrDefault(c => c.CourseId == id);
       return View(thisCourse);
     }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Course course)
+    {
+      _db.Courses.Add(course);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    
+    
   }
 }
