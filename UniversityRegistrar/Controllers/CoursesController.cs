@@ -20,5 +20,14 @@ namespace UniversityRegistrar.Controllers
     {
       return View(_db.Courses.ToList());
     }
+
+    public ActionResult Details(int id)
+    {
+      Course thisCourse = _db.Courses
+        .Include(c => c.JoinEntities)
+        .ThenInclude(j => j.Student)
+        .FirstOrDefault(c => c.CourseId == id);
+      return View(thisCourse);
+    }
   }
 }
