@@ -51,7 +51,7 @@ namespace UniversityRegistrar.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddCourse(Course course, int studentId)
+    public ActionResult AddStudent(Course course, int studentId)
     {
       #nullable enable
       StudentCourse? joinEntity = _db.StudentCourses.FirstOrDefault(j => (j.StudentId == studentId && j.CourseId == course.CourseId));
@@ -62,6 +62,20 @@ namespace UniversityRegistrar.Controllers
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = course.CourseId });
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Course thisCourse = _db.Courses.FirstOrDefault(c => c.CourseId == id);
+      return View(thisCourse);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Course course)
+    {
+      _db.Courses.Update(course);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
