@@ -77,5 +77,20 @@ namespace UniversityRegistrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Delete(int id)
+    {
+      Course thisCourse = _db.Courses.FirstOrDefault(c => c.CourseId == id);
+      return View(thisCourse);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Course thisCourse = _db.Courses.FirstOrDefault(c => c.CourseId == id);
+      _db.Remove(thisCourse);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
