@@ -38,9 +38,16 @@ namespace UniversityRegistrar.Controllers
     [HttpPost]
     public ActionResult Create(Course course)
     {
-      _db.Courses.Add(course);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if (!ModelState.IsValid)
+      {
+        return View(course);
+      }
+      else
+      {
+        _db.Courses.Add(course);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
     
     public ActionResult AddStudent(int id)
@@ -89,6 +96,15 @@ namespace UniversityRegistrar.Controllers
     {
       Course thisCourse = _db.Courses.FirstOrDefault(c => c.CourseId == id);
       _db.Remove(thisCourse);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId)
+    {
+      StudentCourse joinEntry = _db.StudentCourses.FirstOrDefault(e => e.StudentCourseId == joinId);
+      _db.StudentCourses.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
