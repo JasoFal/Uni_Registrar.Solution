@@ -26,7 +26,9 @@ namespace UniversityRegistrar.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CourseName")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("CourseNumber")
                         .HasColumnType("int");
@@ -42,11 +44,13 @@ namespace UniversityRegistrar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DOI")
+                    b.Property<DateTime>("DOE")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("StudentId");
 
@@ -77,7 +81,7 @@ namespace UniversityRegistrar.Migrations
             modelBuilder.Entity("UniversityRegistrar.Models.StudentCourse", b =>
                 {
                     b.HasOne("UniversityRegistrar.Models.Course", "Course")
-                        .WithMany()
+                        .WithMany("JoinEntities")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -91,6 +95,11 @@ namespace UniversityRegistrar.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("UniversityRegistrar.Models.Course", b =>
+                {
+                    b.Navigation("JoinEntities");
                 });
 
             modelBuilder.Entity("UniversityRegistrar.Models.Student", b =>
